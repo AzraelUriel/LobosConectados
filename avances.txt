@@ -1,0 +1,5 @@
+Avances 22/01/2018:
+*Vistas
+  -Registro
+  -Inicio de sesión
+*Registro de usuarios

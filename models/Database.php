@@ -11,7 +11,7 @@ class Database
 		$this->host       =		"localhost";
 		$this->username   =		"root";
 		$this->password   =		'';
-		$this->database   =		"Lobos_db";
+		$this->database   =		"pizzeria";
 		$this->mysqli     =		null;
 	}
 

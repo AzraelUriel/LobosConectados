@@ -26,21 +26,21 @@
 	            <i class="material-icons" style="font-size: 60px"><img src="img/logoRed.png" id="logo" alt="logo"></i>
 	            <p>Inicia sesión</p>
 	        </div>
-	        <form action="">
+	        <form action="dashboard.php" method="post">
 	            <div class="input-field">
-	                <input id="email" type="email" class="validate">
-	                <label for="email"><i class="material-icons">person</i>&nbsp; Correo</label>
+	                <input id="matricula" type="text" class="validate" required>
+	                <label for="matricula"><i class="material-icons">person</i>&nbsp; Matrícula</label>
 	            </div>
 	            <div class="input-field col s12">
-	                <input id="Password" type="password" class="validate">
+	                <input id="Password" type="password" class="validate" required>
 	                <label for="Password"><i class="material-icons">lock</i>&nbsp; Contraseña</label>
 	            </div>
-	            <button class="btn waves-effect waves-light teal"><i class="material-icons">lock_open</i>Ingresar</button>
+	            <button class="btn waves-effect waves-light teal"><i class="material-icons">lock_open</i>&nbsp;Ingresar</button>
 	        </form>
 	        <div class="divider" style="margin: 20px 0;"></div>
-	        <a href="registro.php">Crear cuenta</a>
+	        <a href="register.php">Crear cuenta</a>
 	    </div>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	  <script src="js/materialize.js"></script>
   </body>
 </html>
