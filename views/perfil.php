@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
-  session_start();
-  if(!isset($_SESSION['matricula']) || $_SESSION['matricula'] === -1)
-    header("Location: http://localhost/LobosConectados");
+   session_start();
+   if(!isset($_SESSION['matricula']))
+     header("Location: http://localhost/LobosConectados");
 ?>
 <html>
   <head>

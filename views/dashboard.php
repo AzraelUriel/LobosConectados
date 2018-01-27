@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
-  session_start();
-  if(!isset($_SESSION['matricula']) || $_SESSION['matricula'] === -1)
-    header("Location: http://localhost/LobosConectados");
+   session_start();
+   if(!isset($_SESSION['matricula']))
+     header("Location: http://localhost/LobosConectados");
 ?>
 <html>
   <head>
@@ -31,7 +31,7 @@
         <div class="divider" style="margin: 20px 0;"></div>
         <li><a href="dashboard.php" class="waves-effect waves-light white-text"><i class="material-icons white-text">home</i>Inicio</a></li>
         <li><a href="perfil.php" class="waves-effect waves-light white-text"><i class="material-icons white-text white-text">person</i>Perfil</a></li>
-        <li><a href="#" class="waves-effect waves-light white-text"><i class="material-icons white-text">power_settings_new</i>Cerrar sesión</a></li>
+        <li><a onclick="closeSesion()" class="waves-effect waves-light white-text"><i class="material-icons white-text">power_settings_new</i>Cerrar sesión</a></li>
       </ul>
     </aside>
 
@@ -41,7 +41,7 @@
           <div class="card">
             <h5>¡Haz una pregunta!</h5>
             <div class="divider"></div>
-            <form class="" action="" method="post">
+            <form>
               <div class="row">
                 <div class="input-field col s6">
                   <input id="categoria" type="text" data-length="20">
@@ -99,6 +99,28 @@
         </div>
       </div>
     </footer>
+
+<!--Envío de datos para inicio de sesión-->
+  <script type="text/javascript">
+    function closeSesion() {
+      var xhr = new XMLHttpRequest();
+      var url = 'http://localhost/LobosConectados/controllers/LoginController.php';
+      xhr.open('POST', url, true);
+      var data = "action=close";
+      xhr.addEventListener('error', function(e) {
+			        console.log('Un error ocurrió', e);
+      });
+      xhr.addEventListener('loadend', function() {
+              var respuesta = xhr.responseText;
+              if (respuesta === '1') {
+                location.href = "http://localhost/LobosConectados";
+              }
+      });
+      xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      console.log(data);
+      xhr.send(data);
+    }
+</script>
 
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	  <script src="js/materialize.js"></script>

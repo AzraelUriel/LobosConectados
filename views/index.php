@@ -52,8 +52,17 @@
                     data.append('matricula', matricula);
                     data.append('password', password);
                     data.append('action', "login");
+        xhr.addEventListener('error', function(e) {
+        					        console.log('Un error ocurrió', e);
+        });
         xhr.addEventListener('loadend', function() {
-                          console.log("Petición realizada");
+                    var respuesta = xhr.responseText;
+                    console.log(respuesta);
+                    if (respuesta === '1') {
+                      location.href = "http://localhost/LobosConectados/views/dashboard.php";
+                    }else{
+                      alert('Datos incorrectos');
+                    }
         });
         xhr.send(data);
       }
