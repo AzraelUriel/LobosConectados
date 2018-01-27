@@ -97,7 +97,7 @@
               </div>
         </form>
         <button class="btn waves-effect waves-light teal" onclick="save()">Registrar</button>
-        <p>¿Ya tienes cuenta?<a href="index.php">&nbsp;&nbsp;Inicia sesión</a></p>  
+        <p>¿Ya tienes cuenta?<a href="index.php">&nbsp;&nbsp;Inicia sesión</a></p>
        </div>
   	  </div>
     </center>
@@ -118,7 +118,7 @@
     */
       function save() {
         var xhr = new XMLHttpRequest();
-        var url = 'http://127.0.0.1/LobosConectados/controllers/UsersController.php';
+        var url = 'http://localhost/LobosConectados/controllers/UsersController.php';
         xhr.open('POST', url, true);
                     var data = new FormData();
                     var matricula = document.querySelector("#matricula").value;
@@ -144,7 +144,7 @@
         });
         xhr.send(data);
       }
-      </script>
+    </script>
     </script>
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	  <script src="js/materialize.js"></script>

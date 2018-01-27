@@ -117,7 +117,7 @@
     */
 			function save() {
 				var xhr = new XMLHttpRequest();
-				var url = 'http://127.0.0.1/LobosConectados/controllers/UsersController.php';
+				var url = 'http://localhost/LobosConectados/controllers/UsersController.php';
 				xhr.open('POST', url, true);
                     var data = new FormData();
                     var matricula = document.querySelector("#matricula").value;

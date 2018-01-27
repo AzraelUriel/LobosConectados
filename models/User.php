@@ -40,7 +40,7 @@ class User
 		$sql = "SELECT
 				*
 			   FROM
-				users";
+				Users";
 		$db = new Database();
 		if ($rows = $db->query($sql)) {
 			$db->close();
@@ -66,7 +66,7 @@ class User
 | group     | char(1)     | YES  |     | NULL    |       |
 +-----------+-------------+------+-----+---------+-------+
 */
-		$sql = "INSERT INTO users values('$this->matricula','$this->name','$this->lastname',
+		$sql = "INSERT INTO Users values('$this->matricula','$this->name','$this->lastname',
 			'$this->password','$this->email','$this->career',$this->grade,'$this->group')";
 
 		$db = new Database();

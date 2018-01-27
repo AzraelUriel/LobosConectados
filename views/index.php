@@ -26,20 +26,39 @@
 	            <i class="material-icons" style="font-size: 60px"><img src="img/logoRed.png" id="logo" alt="logo"></i>
 	            <p>Inicia sesión</p>
 	        </div>
-	        <form action="dashboard.php" method="post">
+	        <form>
 	            <div class="input-field">
 	                <input id="matricula" type="text" class="validate" required>
 	                <label for="matricula"><i class="material-icons">person</i>&nbsp; Matrícula</label>
 	            </div>
 	            <div class="input-field col s12">
-	                <input id="Password" type="password" class="validate" required>
+	                <input id="password" type="password" class="validate" required>
 	                <label for="Password"><i class="material-icons">lock</i>&nbsp; Contraseña</label>
 	            </div>
-	            <button class="btn waves-effect waves-light teal"><i class="material-icons">lock_open</i>&nbsp;Ingresar</button>
-	        </form>
+            </form>
+	            <button class="btn waves-effect waves-light teal" onclick="sendData()"><i class="material-icons">lock_open</i>&nbsp;Ingresar</button>
 	        <div class="divider" style="margin: 20px 0;"></div>
 	        <a href="register.php">Crear cuenta</a>
 	    </div>
+<!--Envío de datos para inicio de sesión-->
+    <script type="text/javascript">
+      function sendData() {
+        var xhr = new XMLHttpRequest();
+        var url = 'http://localhost/LobosConectados/controllers/LoginController.php';
+        xhr.open('POST', url, true);
+                    var data = new FormData();
+                    var matricula = document.querySelector("#matricula").value;
+                    var password = document.querySelector("#password").value;
+                    data.append('matricula', matricula);
+                    data.append('password', password);
+                    data.append('action', "login");
+        xhr.addEventListener('loadend', function() {
+                          console.log("Petición realizada");
+        });
+        xhr.send(data);
+      }
+    </script>
+<!--Fin de envío de datos-->
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 	  <script src="js/materialize.js"></script>
   </body>

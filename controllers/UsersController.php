@@ -11,19 +11,31 @@ data.append('grado', grado);
 data.append('grupo', grupo);
 */
 if(isset($_POST["action"])) {
-     $matricula = $_POST['matricula'];
-     $nombre = $_POST['nombre'];
-     $apellidos = $_POST['apellidos'];
-     $password = $_POST['password'];
-     $email = $_POST['email'];
-     $carrera = $_POST['carrera'];
-     $grado = $_POST['grado'];
-     $grupo = $_POST['grupo'];
+  switch ($_POST["action"]) {
+    case 'create':
+      $matricula = $_POST['matricula'];
+      $nombre = $_POST['nombre'];
+      $apellidos = $_POST['apellidos'];
+      $password = $_POST['password'];
+      $email = $_POST['email'];
+      $carrera = $_POST['carrera'];
+      $grado = $_POST['grado'];
+      $grupo = $_POST['grupo'];
 
-     $newUser= new User($matricula,$nombre,$apellidos,$password,$email,$carrera,$grado,$grupo);
-     if($newUser->save()){
-       echo "Registro Exitoso";
-     }
+      $newUser= new User($matricula,$nombre,$apellidos,$password,$email,$carrera,$grado,$grupo);
+      if($newUser->save()){
+        echo "Registro Exitoso";
+      } else{
+
+        echo "Algo salió mal :c";
+      }
+      break;
+
+    default:
+      # code...
+      break;
+  }
+
 } else {
      $products = Product::get();
      $products = json_encode($products);
