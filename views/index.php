@@ -35,8 +35,8 @@
 	                <input id="password" type="password" class="validate" required>
 	                <label for="Password"><i class="material-icons">lock</i>&nbsp; Contraseña</label>
 	            </div>
+              <button class="btn waves-effect waves-light teal" onclick="sendData()"><i class="material-icons">lock_open</i>&nbsp;Ingresar</button>
             </form>
-	            <button class="btn waves-effect waves-light teal" onclick="sendData()"><i class="material-icons">lock_open</i>&nbsp;Ingresar</button>
 	        <div class="divider" style="margin: 20px 0;"></div>
 	        <a href="register.php">Crear cuenta</a>
 	    </div>
@@ -62,6 +62,7 @@
                       location.href = "http://localhost/LobosConectados/views/dashboard.php";
                     }else{
                       alert('Datos incorrectos');
+                      location.reload();
                     }
         });
         xhr.send(data);

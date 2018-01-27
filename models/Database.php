@@ -9,7 +9,7 @@ class Database
 	function __construct()
 	{
 		$this->host       =		"localhost";
-		$this->username   =		"Lobos_db_User";
+		$this->username   =		"Lobo_db_User";
 		$this->password   =		'L0B0123';
 		$this->database   =		"Lobos_db";
 		$this->mysqli     =		null;
