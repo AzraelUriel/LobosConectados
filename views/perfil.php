@@ -176,7 +176,7 @@ window.document.onload = findUser();
             if (respuesta === '1') {
               alert('El usuario se eliminó');
               closeSesion();
-              location.href = "http://localhost/LobosConectados";
+              //location.href = "http://localhost/LobosConectados";
             }
     });
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");

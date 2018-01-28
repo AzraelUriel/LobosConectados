@@ -42,22 +42,23 @@
             <h5>¡Haz una pregunta!</h5>
             <div class="divider"></div>
             <form>
+              <input type="text" readonly id="matricula" value="<?php echo $_SESSION['matricula']?>">
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="categoria" type="text" data-length="20">
-                  <label for="categoria">Categoría</label>
+                  <input id="pregunta" type="text" data-length="20">
+                  <label for="pregunta">Pregunta</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea id="pregunta" class="materialize-textarea" data-length="200" required></textarea>
+                  <textarea id="pregunta_descripcion" class="materialize-textarea" data-length="200" required></textarea>
                   <label for="pregunta">Escribe</label>
                 </div>
               </div>
-              <button type="sumbit" name="pregunta" class="btn btn-floating waves-effect waves-light">
+            </form>
+              <button onclick="makeQuestion()" name="pregunta" class="btn btn-floating waves-effect waves-light">
                 <i class="material-icons">send</i>
               </button>
-            </form>
           </div>
         </div>
         <!-- Dropdown Structure Aqui va el for-->
@@ -69,22 +70,15 @@
 
           <div class="card">
             <h5>Comunidad</h5>
-            <button class="dropdown-button btn waves-effect waves-light white-text" href="#!" data-activates="dropdown">Categorías<i class="material-icons white-text right">arrow_drop_down</i></button>
+            <button class="dropdown-button btn waves-effect waves-light white-text" href="#" data-activates="dropdown">Categorías<i class="material-icons white-text right">arrow_drop_down</i></button>
             <div class="divider"></div>
-            <div class="container-box">
+            <div id="container" class="container-box">
               <div class="item">
                 <h6>usuario</h6>
                 <div class="divider"></div>
-                <p>¿donde esta tal salon?</p>
-                <div class="divider"></div>
                 <p>categoría</p>
-              </div>
-              <div class="item">
-                <h6>usuario</h6>
                 <div class="divider"></div>
                 <p>¿donde esta tal salon?</p>
-                <div class="divider"></div>
-                <p>categoría</p>
               </div>
             </div>
           </div>
@@ -100,8 +94,9 @@
       </div>
     </footer>
 
-<!--Envío de datos para inicio de sesión-->
+<!--Todas las funciones javascript-->
   <script type="text/javascript">
+  window.document.onload = fillContainer();
     function closeSesion() {
       var xhr = new XMLHttpRequest();
       var url = 'http://localhost/LobosConectados/controllers/LoginController.php';
@@ -119,6 +114,79 @@
       xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
       console.log(data);
       xhr.send(data);
+    }
+    function makeQuestion() {
+        var xhr = new XMLHttpRequest();
+        var url = 'http://localhost/LobosConectados/controllers/QuestionsController.php';
+        xhr.open('POST', url, true);
+                    var matricula = document.querySelector("#matricula").value;
+                    var pregunta_descripcion = document.querySelector("#pregunta_descripcion").value;
+                    var pregunta = document.querySelector("#pregunta").value;
+                    var datos = new FormData();
+                    datos.append('matricula', matricula);
+                    datos.append('pregunta_descripcion', pregunta_descripcion);
+                    datos.append('pregunta', pregunta);
+                    datos.append('action', "create");
+        xhr.addEventListener('error', function(e) {
+        					        console.log('Un error ocurrió', e);
+        });
+        xhr.addEventListener('loadend', function() {
+                    var respuesta = xhr.responseText;
+                    console.log("Respuesta",xhr.responseText);
+                    if (respuesta === '1') {
+                      alert('Pregunta hecha');
+                      location.reload();
+                    }else{
+                      alert('Algo pasó :c');
+                    //  location.reload();
+                    }
+        });
+        xhr.send(datos);
+    }
+    function fillContainer() {
+        var xhr = new XMLHttpRequest();
+        var url = "http://localhost/LobosConectados/controllers/QuestionsController.php";
+        xhr.open('GET',url,true);
+        xhr.addEventListener('error',function() {
+            console.log('Ocurrió un error');
+        });
+        xhr.addEventListener('loadend',function() {
+
+          if (xhr.responseText!='false') {
+            questions = eval(xhr.responseText);
+            questions.forEach(function(question) {
+                  cajaPregunta = document.createElement('div');
+                  cajaPregunta.classList.add('item');
+
+                  matricula = document.createTextNode(question.user_matricula);
+                  user = document.createElement("h6");
+                  user.appendChild(matricula);
+                  cajaPregunta.appendChild(user);
+
+                  divider = document.createElement('div');
+                  divider.classList.add('divider');
+                  cajaPregunta.appendChild(divider);
+
+                  parrafo = document.createElement("p");
+                  pregunta = document.createTextNode(question.question);
+                  b = document.createElement("b");
+                  b.appendChild(pregunta);
+                  parrafo.appendChild(b);
+                  cajaPregunta.appendChild(parrafo);
+
+                  cajaPregunta.appendChild(divider);
+
+                  parrafo = document.createElement("p");
+                  question_descripcion = document.createTextNode(question.question_description);
+                  parrafo.appendChild(question_descripcion);
+                  cajaPregunta.appendChild(parrafo);
+
+                  document.querySelector("#container").appendChild(cajaPregunta);
+
+            });}
+            console.log(xhr.responseText);
+        });
+        xhr.send();
     }
 </script>
 

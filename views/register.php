@@ -141,6 +141,13 @@
                     //alert(password);
         xhr.addEventListener('loadend', function() {
                          console.log("Petición realizada");
+                         if (xhr.responseText==='1') {
+                           alert('Registro existoso');
+                           location.href = "http://localhost/LobosConectados/views/";
+                         }else{
+                           alert('Algo salió mal');
+                           location.reload();
+                         }
         });
         xhr.send(data);
       }

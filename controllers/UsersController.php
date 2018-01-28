@@ -1,15 +1,5 @@
 <?php
 include_once("../models/User.php");
-/*
-data.append('matricula', matricula);
-data.append('nombre', nombre);
-data.append('apellidos', apellido);
-data.append('password', password);
-data.append('email', email);
-data.append('carrera', carrera);
-data.append('grado', grado);
-data.append('grupo', grupo);
-*/
 if(isset($_POST["action"])) {
   switch ($_POST["action"]) {
     case 'create':
@@ -24,9 +14,9 @@ if(isset($_POST["action"])) {
 
       $newUser= new User($matricula,$nombre,$apellidos,$password,$email,$carrera,$grado,$grupo);
       if($newUser->save()){
-        echo "Registro Exitoso";
+        echo "1";
       } else{
-        echo "Algo salió mal :c";
+        echo "0";
       }
       break;
     case 'find':
@@ -65,9 +55,4 @@ if(isset($_POST["action"])) {
       # code...
       break;
   }
-
-} else {
-     $products = Product::get();
-     $products = json_encode($products);
-     echo $products;
 }
