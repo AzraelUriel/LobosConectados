@@ -57,7 +57,6 @@
         });
         xhr.addEventListener('loadend', function() {
                     var respuesta = xhr.responseText;
-                    console.log(respuesta);
                     if (respuesta === '1') {
                       location.href = "http://localhost/LobosConectados/views/dashboard.php";
                     }else{

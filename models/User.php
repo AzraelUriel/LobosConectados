@@ -78,4 +78,52 @@ class User
 		return false;
 
 	}
+	public function find($matricula)
+	{
+		$sql = "SELECT * FROM	Users WHERE matricula = '$matricula'";
+		$db = new Database();
+		if ($rows = $db->query($sql)) {
+			$db->close();
+			return $rows;
+		}
+		$db->close();
+		return false;
+	}
+	/*
+	+-----------+-------------+------+-----+---------+-------+
+	| Field     | Type        | Null | Key | Default | Extra |
+	+-----------+-------------+------+-----+---------+-------+
+	| matricula | varchar(10) | NO   | PRI | NULL    |       |
+	| name      | varchar(20) | YES  |     | NULL    |       |
+	| lastname  | varchar(20) | YES  |     | NULL    |       |
+	| password  | varchar(45) | YES  |     | NULL    |       |
+	| email     | varchar(45) | YES  |     | NULL    |       |
+	| career    | varchar(3)  | YES  |     | NULL    |       |
+	| grade     | int(11)     | YES  |     | NULL    |       |
+	| group     | char(1)     | YES  |     | NULL    |       |
+	+-----------+-------------+------+-----+---------+-------+
+	*/
+	public function update($matricula,$name,$lastname,$password,$email,$career,$grade,$group)
+	{
+		$sql = "UPDATE Users SET name='$name', lastname='$lastname', email='$email', career='$career', grade=$grade, `group` ='$group'
+						WHERE matricula='$matricula'";
+		$db = new Database();
+		if ($db->query($sql)) {
+		$db->close();
+		return true;
+		}
+		$db->close();
+		return false;
+	}
+	public function delete($matricula)
+	{
+		$sql = "DELETE FROM Users WHERE matricula='$matricula'";
+		$db = new Database();
+		if ($db->query($sql)) {
+		$db->close();
+		return true;
+		}
+		$db->close();
+		return false;
+	}
 }

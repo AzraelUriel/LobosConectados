@@ -11,6 +11,7 @@ if (isset($_POST['action'])) {
         if(login($matricula,$password)){
           session_start();
           $_SESSION['matricula'] = $matricula;
+          $_SESSION['password'] = $password;
           echo "1";
         } else{
           echo "0";
